@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookstore</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="navigation">
+      <div class="left">
+      </div>
+
+      <div class="center">
+        <%= link_to "Brittany's Bawsy Books", root_path %>
+      </div>
+
+      <div class="right">
+        <% if session[:user_id].present? %>
+        <%= link_to "Log Out", session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Log In", new_session_path %>        
+        <% end %>
+      </div>
+    </div>
+
+<% if flash[:notice] %>
+  <p class="notice"> <%= flash[:notice] %> </p>
+<% end %>
+
+<% if flash[:alert] %>
+<p class="alert"> <%= flash[:alert] %> </p>
+<% end %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

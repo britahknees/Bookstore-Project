@@ -1,0 +1,10 @@
+<h1>Welcome to Brittany's Bawse Bookstore!</h1>
+<ul>
+  <% @books.each do |book| %>
+  <li><%= link_to(book.title, book_path(book)) %> by <%= book.author %></li>
+  <% end %>
+</ul>
+
+<% if session[:user_id].present? %>
+<%= link_to("Add a book", new_book_path, class: "button") %>
+<% end %>
